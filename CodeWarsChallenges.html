@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" />
+    <title>All CodeWars Challenges</title>
+
+    <style>
+        a{
+            word-break:inherit;
+        }
+        p {
+            overflow-wrap: break-word;
+        }
+        .loader2 {
+            border: 16px solid indigo;
+            border-radius: 50%;
+            border-top: 16px solid purple;
+            width: 120px;
+            height: 120px;
+            animation: spin 5s linear infinite;
+            margin-left:25%;
+        }
+
+
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .loader1 {
+            border: 16px solid cadetblue;
+            border-radius: 50%;
+            border-top: 16px solid purple;
+            width: 120px;
+            height: 120px;
+            animation: spin 5s linear infinite;
+            margin-left: 25%;
+        }
+
+
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .loader0 {
+            border: 16px solid crimson;
+            border-radius: 50%;
+            border-top: 16px solid purple;
+            width: 120px;
+            height: 120px;
+            animation: spin 5s linear infinite;
+            margin-left: 25%;
+        }
+
+
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+
+        }
+        .detaildiv0{
+            background-color:cadetblue;
+        }
+        .detaildiv1 {
+            background-color:indigo ;
+        }
+        .detaildiv2 {
+            background-color: crimson;
+        }
+        summary{
+            color:peachpuff;
+            font-family:Lobster,Arial;
+            font-size:large;
+            margin-bottom:2px;
+        }
+        details{
+           color:antiquewhite;
+            font-family:Arial;
+            font-size:medium;
+
+        }
+    </style>
+</head>
+<body>
+
+
+
+
+    <h1 class="text-info text-center">All Completed CodeWars Challenges</h1>
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-lg-4">
+                <div class="jumbotron detaildiv0">
+                    <h1 class="text-primary text-center">Page 1</h1>
+                    <div class="loader0 text-center text-dark">Loading</div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4">
+                <div class="jumbotron detaildiv1">
+                    <h1 class="text-info text-center">Page 2</h1>
+                    <div class="loader1 text-center text-info">Loading</div>
+
+                </div>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                    <div class="jumbotron detaildiv2">
+                        <h1 class="text-secondary text-center">Page 3</h1>
+                        <div class="loader2 text-center text-primary">Loading</div>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+
+
+
+
+
+    <h6 class="text-center">Written and Coded By <a href="https://codepen.io/Shahraiz"> Shahraiz Kayani</a></h6>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var totalpages = 3;
+            for (let i = 0; i < totalpages; i++) {
+               
+                 
+                setTimeout(function () {
+                    GetChallenges(i);
+                }, 5000);
+
+            }
+            
+
+            function GetChallenges(pagenumber) {
+
+                var codewarsid = "Shahraiz19";
+                $.ajax({
+                    url: "https://cors-anywhere.herokuapp.com/https://www.codewars.com/api/v1/users/" + codewarsid + "/code-challenges/completed",
+                    data: { page: pagenumber },
+                    method: "get",
+                    dataType: "json",
+                    crossDomain: true,
+                    success: function (response) {
+                        var output = "";
+                        output += "<ol>";
+                        var challenges = response.data;
+
+                        for (let i = 0; i < challenges.length; i++) {
+                            output += "<li>";
+                            output += "<details>";
+                            output += "<summary>" + challenges[i].name + "</summary>";
+                            output += "<p>Completed in Language " + challenges[i].completedLanguages.toString() + "</p>";
+                            output += "<p>Completed Date " + challenges[i].completedAt + "</p>";
+                            var href = "https://www.codewars.com/kata/" + challenges[i].id;
+                            output += "<p>The Description of Kata can be viewed at <a href='" + href + "'>" + href+ "</a></p>";
+                            output += "</details>";
+                            output += "</li>";
+                           
+                        }
+
+                        output += "</ol>";
+                        $(".loader" + pagenumber).css("display", "none");
+                        $(".detaildiv" + pagenumber).append(output);
+
+                    },
+                    error: function (err) {
+                        alert(err.status);
+                    }
+
+
+
+
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
